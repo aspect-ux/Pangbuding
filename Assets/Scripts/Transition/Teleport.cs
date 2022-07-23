@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    [SceneName] public string SceneFrom;
-    [SceneName] public string SceneToGo;
+    [SceneName]public string SceneFrom;
+    [SceneName]public string SceneToGo;
     public void TeleportToScene()
     {
         TransitionManager.Instance.Transition(SceneFrom, SceneToGo);

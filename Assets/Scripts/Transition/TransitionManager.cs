@@ -22,12 +22,22 @@ public class TransitionManager : Singleton<TransitionManager>
     private IEnumerator TransitonToScene(string from,string to)
     {
         yield return Fade(1);//卸载场景前，先变黑,也可以StartCoroutine
-        yield return SceneManager.UnloadSceneAsync(from);
+
+        //如果为空，就直接加载不用卸载
+        if (from != string.Empty)
+        {
+            EventHandler.CallBeforeSceneUload();//保存背包物体数据
+
+            yield return SceneManager.UnloadSceneAsync(from);
+        }
+       
         yield return SceneManager.LoadSceneAsync(to,LoadSceneMode.Additive);//添加到persistent,共有两个场景
 
         //设置新加载的场景为激活场景
         Scene sceneName = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
         SceneManager.SetActiveScene(sceneName);
+
+        EventHandler.CallAfterSceneLoad();//加载出背包数据
 
         yield return Fade(0);//场景激活后显示场景
     }
@@ -43,7 +53,7 @@ public class TransitionManager : Singleton<TransitionManager>
         isFade = true;
         fadeCanvasGroup.blocksRaycasts = true;
         float speed = Mathf.Abs(fadeCanvasGroup.alpha - targetAlpha) / fadeDuration;
-        Debug.Log("WRONG");
+
         while (!Mathf.Approximately(fadeCanvasGroup.alpha, targetAlpha))
         {
             //如果渐变没好,按照固定速度变化

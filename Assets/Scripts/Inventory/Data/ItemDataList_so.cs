@@ -9,7 +9,7 @@ public class ItemDataList_so : ScriptableObject
 
     public ItemDetails GetItemDetails(ItemName itemName)
     {
-        //获取背包物体信息
+        //用名字获取背包物体信息
         return itemDetailsList.Find(i => i.itemName == itemName);
     }
 }
