@@ -34,6 +34,37 @@ public class InventoryUI : MonoBehaviour
         {
             slot.SetItem(itemDetails);
             currentIndex = index;
+
+            if(index > 0)
+                leftButton.interactable = true;
+            if(index == -1)
+            {
+                leftButton.interactable = false;
+                rightButton.interactable = false;
+            }
         }
+    }
+
+    public void SwitchItem(int amount)
+    {
+        var index = currentIndex + amount;
+        //在选取道具的时候，当按到最左边，那么就使左按钮失效；右边同理
+        if (index < currentIndex)
+        {
+            leftButton.interactable = false;
+            rightButton.interactable = true;
+        }
+        else if(index > currentIndex)
+        {
+            leftButton.interactable = true;
+            rightButton.interactable = false;
+        }
+        else
+        {
+            leftButton.interactable = true;
+            leftButton.interactable = true;
+        }
+        //当按钮设置好后，开始更新UI
+        EventHandler.CallItemChange(index);
     }
 }

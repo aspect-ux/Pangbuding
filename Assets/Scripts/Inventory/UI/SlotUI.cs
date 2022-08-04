@@ -23,9 +23,9 @@ public class SlotUI : MonoBehaviour,IPointerClickHandler, IPointerEnterHandler, 
 
         this.gameObject.GetComponent<Image>().sprite = itemDetails.itemSprite;
         this.gameObject.GetComponent<Image>().SetNativeSize();
-
+/*
         itemImage.sprite = itemDetails.itemSprite;
-        itemImage.SetNativeSize();
+        itemImage.SetNativeSize();*/
         Debug.Log("slot " + itemDetails.itemName);
 
     }
@@ -53,7 +53,7 @@ public class SlotUI : MonoBehaviour,IPointerClickHandler, IPointerEnterHandler, 
     /// <exception cref="System.NotImplementedException"></exception>
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("jinru");
+        //Debug.Log("jinru");
         //当进入右下角提示窗口
         if (this.gameObject.activeInHierarchy)
         {

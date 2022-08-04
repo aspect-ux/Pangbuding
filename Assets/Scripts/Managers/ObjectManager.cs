@@ -44,6 +44,7 @@ public class ObjectManager : MonoBehaviour
                 Debug.Log("场景中已经存在"+itemAvaliableDict.Count);
 
                 item.gameObject.SetActive(!itemAvaliableDict[item.ItemName]);
+                item.gameObject.SetActive(false);
             }
         }
 

@@ -28,8 +28,8 @@ public class Interactive : MonoBehaviour
         Debug.Log("select wrong");
     }
 
-    public void EmptyClick()
+    public virtual void EmptyClick()
     {
-
+        
     }
 }

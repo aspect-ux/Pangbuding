@@ -42,4 +42,35 @@ public class EventHandler
         itemUsedEvent?.Invoke(itemName);
     }
 
+
+    //改变选中的背包中的物体
+    public static event Action<int> ItemChange;
+    public static void CallItemChange(int index)
+    {
+        ItemChange?.Invoke(index);
+    }
+
+
+    //显示对话UI
+    public static event Action<string> ShowDialogueEvent;
+    public static void CallShowDialogueEvent(string data)
+    {
+        ShowDialogueEvent?.Invoke(data);
+    }
+
+    //游戏状态切换,比如防止对话时切换场景
+    public static event Action<GameStates> ChangeGameState;
+    public static void CallChangeGameState(GameStates gameState)
+    {
+        ChangeGameState?.Invoke(gameState);
+    }
+
+    //用于检验H2A小游戏的结束事件
+    public static event Action CheckGameH2AState;
+    public static void CallCheckGameH2AState()
+    {
+        CheckGameH2AState?.Invoke();    
+    }
+
+
 }

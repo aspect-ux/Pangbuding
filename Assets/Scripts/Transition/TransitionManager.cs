@@ -9,10 +9,36 @@ public class TransitionManager : Singleton<TransitionManager>
     public CanvasGroup fadeCanvasGroup;
     public float fadeDuration;
 
+    private bool canTransition;
+
+
+    private void Start()
+    {
+        //todo:´ýµ÷Õû
+        canTransition = true;
+    }
+    private void OnEnable()
+    {
+        EventHandler.ChangeGameState += onChangeGameState;
+    }
+
+    private void OnDisable()
+    {
+        EventHandler.ChangeGameState -= onChangeGameState;
+    }
+
+    private void onChangeGameState(GameStates gameStates)
+    {
+        if (gameStates == GameStates.Pause)
+            canTransition = false;
+        else
+            canTransition = true;
+    }
+
     public void Transition(string from, string to)
     {
-        if(!isFade)
-        StartCoroutine(TransitonToScene(from, to));
+        if(!isFade && canTransition)
+            StartCoroutine(TransitonToScene(from, to));
     }
 
     /// <summary>

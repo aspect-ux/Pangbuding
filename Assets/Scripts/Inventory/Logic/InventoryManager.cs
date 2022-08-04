@@ -12,18 +12,38 @@ public class InventoryManager : Singleton<InventoryManager>
     private void OnEnable()
     {
         EventHandler.itemUsedEvent += onItemUsedEvent;
+        EventHandler.ItemChange += onItemChange;
+        EventHandler.afterSceneLoad += onAfterSceneLoad;
     }
 
     private void OnDisable()
     {
         EventHandler.itemUsedEvent -= onItemUsedEvent;
+        EventHandler.ItemChange -= onItemChange;
+        EventHandler.afterSceneLoad -= onAfterSceneLoad;
+    }
+
+    private void onAfterSceneLoad()
+    {
+        if (itemList.Count == 0)  //加载后更新UI
+            EventHandler.CallUpdateUIEvent(null, -1);
+    }
+
+    private void onItemChange(int index)
+    {
+        if (index >= 0 && index < itemList.Count)
+        {
+            //如果index没有超范围，就更新UI
+            ItemDetails item = itemData.itemDetailsList[index];
+            EventHandler.CallUpdateUIEvent(item, index);
+        }
     }
 
     private void onItemUsedEvent(ItemName itemName)
     {
         //将使用过的物品移除清单
-        var index = GetItemIndex(itemName);
-        itemList.RemoveAt(index);
+        //var index = GetItemIndex(itemName);
+        //itemList.RemoveAt(index);
 
 
         //更新UI
