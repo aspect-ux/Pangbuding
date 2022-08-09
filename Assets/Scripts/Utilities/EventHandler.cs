@@ -73,4 +73,15 @@ public class EventHandler
     }
 
 
+    //传递场景名字，当迷你游戏结束，别的模块需要调用该迷你游戏的状态，需要将是否已经完成游戏的bool，传递过去
+    //当作记录
+
+    public static event Action<string> GamePassEvent;
+    public static void CallGamePassEvent(string gameName)
+    {
+        GamePassEvent?.Invoke(gameName);
+    }
+
+
+
 }

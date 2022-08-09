@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CursorManager : MonoBehaviour
 {
@@ -49,7 +50,11 @@ public class CursorManager : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(mouseWorldPos);
         canClick = ObjectAtMousePosition();
+
+        //因为此时点击的是UI,不能触发UI下的物体
+        //if (InteracWithUI()) return;   //当点击的是UI就不会有点击事件的判断
 
         if(canClick && Input.GetMouseButtonDown(0))
         {
@@ -95,5 +100,20 @@ public class CursorManager : MonoBehaviour
     public Collider2D ObjectAtMousePosition()
     {
         return Physics2D.OverlapPoint(mouseWorldPos);
+    }
+
+
+    /// <summary>
+    /// 判断是否正与UI互动
+    /// </summary>
+    /// <returns></returns>
+    private bool InteracWithUI()
+    {
+        //当UI不为空且当前鼠标点击到了UI
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
+        {
+            return true;
+        }
+        return false;
     }
 }

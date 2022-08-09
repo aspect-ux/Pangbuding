@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/H2A.unity
     guid: 6e61df8f1127df845a04af722ad2ad12
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 6af0bc7105eda2d428cac4363c74864b
   m_configObjects: {}

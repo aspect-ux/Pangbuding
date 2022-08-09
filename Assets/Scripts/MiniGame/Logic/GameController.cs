@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
+/// <summary>
+/// 用于控制当前迷你游戏，可拓展
+/// </summary>
 public class GameController : Singleton<GameController>
 {
     public UnityEvent onFinish;
-
-
-
 
 
     [Header("H2A游戏数据")]
@@ -49,14 +48,16 @@ public class GameController : Singleton<GameController>
             if (!ball.isMatch) return;
         }
 
-        //结束
+        //迷你游戏结束
         Debug.Log("结束");
         //关闭所有holder的碰撞体，使得游戏结束后，无法再继续点击
         foreach(var holder in holderTransform)
         {
             holder.GetComponent<Collider2D>().enabled = false;
         }
+        //在调用结束事件之前，先保存该迷你游戏的状态
 
+        EventHandler.CallGamePassEvent(gameData.gameName);
         onFinish?.Invoke();
     }
 

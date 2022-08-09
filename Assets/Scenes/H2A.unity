@@ -1103,7 +1103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SceneFrom: H2A
-  SceneToGo: H1
+  SceneToGo: H2
 --- !u!65 &1683226696
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class TransitionManager : Singleton<TransitionManager>
 {
+    [SceneName] public string startScene;
     private bool isFade;
     //控制渐变
     public CanvasGroup fadeCanvasGroup;
@@ -16,6 +17,7 @@ public class TransitionManager : Singleton<TransitionManager>
     {
         //todo:待调整
         canTransition = true;
+        //StartCoroutine(TransitonToScene(string.Empty, startScene));
     }
     private void OnEnable()
     {
