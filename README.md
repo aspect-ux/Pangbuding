@@ -2,7 +2,7 @@
 
 #### 前言
 
-本项目实现了
+本项目为2d解密游戏，学习于https://www.bilibili.com/video/BV1ha41147RP?spm_id_from=333.999.0.0&vd_source=2b3a7e4dffb44c07076538fe075cb1cf
 
 **UI**
 
